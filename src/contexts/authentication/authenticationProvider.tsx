@@ -5,7 +5,7 @@ import { redirect, usePathname } from "next/navigation";
 import { createContext, ReactNode } from "react";
 
 interface contextProps {
-  user: User | null;
+  user: any | null;
   loading: boolean;
 }
 

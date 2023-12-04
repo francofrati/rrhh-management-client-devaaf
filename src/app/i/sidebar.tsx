@@ -1,15 +1,39 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 
 import { signOutFromFirebase } from "@/firebase/authentication";
+import { AuthContext } from "@/contexts/authentication/authenticationProvider";
+import Link from "next/link";
+import { employeesRoute } from "@/routesPaths";
 
 function Sidebar() {
+  const { user } = useContext(AuthContext);
+
   return (
     <nav className="h-screen fixed left-0 top-0 w-[200px] border-r-[3px] border-r-slate-200 py-10 pl-6">
-      <ul className="flex flex-col gap-4">
-        <li>Inicio</li>
-        <li>Recibos</li>
-        <li>Empleados</li>
+      <header>
+        <section className="flex items-center gap-3">
+          <img
+            className="rounded-full w-[40px] h-[40px] object-contain border-2 border-slate-200"
+            src={user.companyImg}
+            alt="company image"
+          />
+          <img
+            className="rounded-full w-[40px] h-[40px] object-contain border-2 border-slate-200"
+            src={user.profileImg}
+            alt="user profile image"
+          />
+          <span className="whitespace-nowrap text-ellipsis overflow-hidden">
+            {user.name}
+          </span>
+        </section>
+      </header>
+      <ul className="flex flex-col gap-4 mt-10">
+        <li className="cursor-pointer">Inicio</li>
+        <li className="cursor-pointer">Recibos</li>
+        <Link href={employeesRoute} className="cursor-pointer">
+          Empleados
+        </Link>
       </ul>
       <button
         type="button"
