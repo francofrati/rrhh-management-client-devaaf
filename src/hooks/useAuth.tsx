@@ -1,7 +1,10 @@
 "use client";
 
 import { auth } from "@/firebase/config";
-import { getAuthorization } from "@/lib/authorization/authorization";
+import {
+  createAuthUserObject,
+  getAuthorization,
+} from "@/lib/authorization/authorization";
 import { User, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 
@@ -14,13 +17,9 @@ export function useAuth() {
       if (user) {
         getAuthorization(user.uid)
           .then((res) => {
-            setUser({
-              ...user,
-              company: res.company,
-              profileImg: res.profileImg,
-              name: res.name,
-              companyImg: res.companyImg,
-            });
+            const authObject = createAuthUserObject(user, res);
+
+            setUser(authObject);
             setLoading(false);
           })
           .catch(() => {

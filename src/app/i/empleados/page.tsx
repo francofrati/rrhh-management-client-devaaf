@@ -1,7 +1,12 @@
-import React from "react";
+"use client";
+import CreateEmployeeForm from "./components/createEmployee";
 
 function EmployeesPage() {
-  return <div>Pagina de los empleados</div>;
+  return (
+    <div>
+      <CreateEmployeeForm />
+    </div>
+  );
 }
 
 export default EmployeesPage;

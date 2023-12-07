@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { signOutFromFirebase } from "@/firebase/authentication";
 import { AuthContext } from "@/contexts/authentication/authenticationProvider";
 import Link from "next/link";
-import { employeesRoute } from "@/routesPaths";
+import { employeesRoute, homeRoute } from "@/routesPaths";
 
 function Sidebar() {
   const { user } = useContext(AuthContext);
@@ -15,7 +15,7 @@ function Sidebar() {
         <section className="flex items-center gap-3">
           <img
             className="rounded-full w-[40px] h-[40px] object-contain border-2 border-slate-200"
-            src={user.companyImg}
+            src={user.company.companyImg}
             alt="company image"
           />
           <img
@@ -29,7 +29,9 @@ function Sidebar() {
         </section>
       </header>
       <ul className="flex flex-col gap-4 mt-10">
-        <li className="cursor-pointer">Inicio</li>
+        <Link href={homeRoute} className="cursor-pointer">
+          Inicio
+        </Link>
         <li className="cursor-pointer">Recibos</li>
         <Link href={employeesRoute} className="cursor-pointer">
           Empleados
