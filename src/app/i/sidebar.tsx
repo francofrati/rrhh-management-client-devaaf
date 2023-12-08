@@ -1,9 +1,12 @@
 "use client";
 import React, { useContext } from "react";
 
-import { signOutFromFirebase } from "@/firebase/authentication";
-import { AuthContext } from "@/contexts/authentication/authenticationProvider";
 import Link from "next/link";
+
+import { AuthContext } from "@/contexts/authentication/authenticationProvider";
+
+import { signOutFromFirebase } from "@/firebase/authentication";
+
 import { employeesRoute, homeRoute } from "@/routesPaths";
 
 function Sidebar() {

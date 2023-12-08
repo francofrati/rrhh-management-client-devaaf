@@ -1,7 +1,10 @@
-import { getAuthorizationUrl } from "@/server/routes/session";
-import { getAuthorizationRes } from "@/types/server";
 import axios from "axios";
+
 import { User } from "firebase/auth";
+
+import { getAuthorizationUrl } from "@/server/routes/session";
+
+import { getAuthorizationRes } from "@/types/server";
 
 export const getAuthorization = async (uid: string) => {
   const { data: res } = await axios.post<getAuthorizationRes>(
