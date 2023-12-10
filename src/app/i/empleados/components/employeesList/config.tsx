@@ -1,4 +1,5 @@
 import { Employees } from "@/types/employees";
+import { Button } from "antd";
 
 import { ColumnsType } from "antd/es/table";
 
@@ -41,5 +42,15 @@ export const columns: ColumnsType<Employees & { key: number | string }> = [
     dataIndex: "address",
     title: "Dirección",
     align: "center",
+  },
+  {
+    key: "action",
+    align: "center",
+    title: "Operaciones",
+    render: () => (
+      <Button title="Operaciones" danger>
+        Operaciones
+      </Button>
+    ),
   },
 ];

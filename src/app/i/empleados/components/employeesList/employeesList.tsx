@@ -11,8 +11,11 @@ import { Employees } from "@/types/employees";
 
 export default function EmployeesList() {
   const { user } = useContext(AuthContext);
-  const { employees: allEmployees, loadEmployees } =
-    useContext(EmployeesContext);
+  const {
+    employees: allEmployees,
+    loadEmployees,
+    loadingEmployees,
+  } = useContext(EmployeesContext);
 
   const employees: Array<Employees & { key: string | number }> = useMemo(() => {
     if (!allEmployees.length) return [];
@@ -37,5 +40,12 @@ export default function EmployeesList() {
     loadEmployees(companyId, userId);
   }, [user]);
 
-  return <Table columns={columns} dataSource={employees} bordered />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={employees}
+      bordered
+      loading={loadingEmployees}
+    />
+  );
 }
