@@ -8,8 +8,12 @@ import { EmployeesContext } from "@/contexts/employees/employeesProvider";
 import { columns } from "./config";
 
 import { Employees } from "@/types/employees";
+import { employeeRoute } from "@/routesPaths";
+import { useRouter } from "next/navigation";
 
 export default function EmployeesList() {
+  const router = useRouter();
+
   const { user } = useContext(AuthContext);
   const {
     employees: allEmployees,
@@ -46,6 +50,13 @@ export default function EmployeesList() {
       dataSource={employees}
       bordered
       loading={loadingEmployees}
+      onRow={(employee) => {
+        return {
+          onClick: () => {
+            router.push(employeeRoute(employee.id));
+          },
+        };
+      }}
     />
   );
 }

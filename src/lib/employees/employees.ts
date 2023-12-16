@@ -4,6 +4,7 @@ import { AddNewEmployeeBody, Employees } from "@/types/employees";
 
 import {
   addNewEmployeeUrl,
+  getEmployeeByIdandCompanyIdUrl,
   getEmployeesByCompanyUrl,
 } from "@/server/routes/employees";
 
@@ -33,4 +34,20 @@ export const addNewEmployee = async (
   };
 
   await axios.post(addNewEmployeeUrl(companyId), body);
+};
+
+export const getEmployeeByIdandCompanyId = async (
+  companyId: string | number,
+  userId: string,
+  employeeId: string | number
+) => {
+  const body = {
+    uid: userId,
+  };
+  const { data: employee } = await axios.post<Employees>(
+    getEmployeeByIdandCompanyIdUrl(companyId, employeeId),
+    body
+  );
+
+  return employee;
 };
